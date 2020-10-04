@@ -11,6 +11,7 @@ use App\Entity\User;
 use App\Entity\UserFormData;
 use App\Repository\UserRepository;
 use Exception;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class UserService
@@ -20,6 +21,7 @@ class UserService extends BaseService
     private UserRepository               $userRepository;
     private PersistenceService           $persistenceService;
     private DateService                  $dateService;
+    private AppMailer                    $appMailer;
     private UserPasswordEncoderInterface $passwordEncoder;
 
     /**
@@ -29,15 +31,17 @@ class UserService extends BaseService
      * @param UserRepository               $userRepository
      * @param PersistenceService           $persistenceService
      * @param DateService                  $dateService
+     * @param AppMailer                    $appMailer
      * @param UserPasswordEncoderInterface $passwordEncoder
      */
-    public function __construct(EntityManagerInterface $em, UserRepository $userRepository, PersistenceService $persistenceService, DateService $dateService, UserPasswordEncoderInterface $passwordEncoder)
+    public function __construct(EntityManagerInterface $em, UserRepository $userRepository, PersistenceService $persistenceService, DateService $dateService, AppMailer $appMailer, UserPasswordEncoderInterface $passwordEncoder)
     {
         parent::__construct($em);
 
         $this->userRepository     = $userRepository;
         $this->persistenceService = $persistenceService;
         $this->dateService        = $dateService;
+        $this->appMailer          = $appMailer;
         $this->passwordEncoder    = $passwordEncoder;
     }
 
@@ -55,14 +59,29 @@ class UserService extends BaseService
         $user->setFirstName($userFormData->getFirstName())
              ->setLastName($userFormData->getLastName())
              ->setEmail($userFormData->getEmail())
-             ->setRoles(['ROLE_ADMIN'])
-             ->setCreatedAt($this->dateService->getServerDateTime());
+             ->setRoles($userFormData->getRoles())
+             ->setCreatedAt($this->dateService->getServerDateTime())
+             ->setIsActive($userFormData->getIsActive());
 
         $encodedPassword = $this->passwordEncoder->encodePassword($user, $userFormData->getPassword());
         $user->setPassword($encodedPassword);
 
         $this->persistenceService->persistEntity($user, $action);
 
+        if (!$user->getIsActive()) {
+            $this->appMailer->sendNewUserEmail($user);
+        }
+
         return $user;
+    }
+
+    /**
+     * @param UserInterface $user
+     *
+     * @return User|null
+     */
+    public function getUserDetail(UserInterface $user)
+    {
+        return $this->userRepository->find($user->getId());
     }
 }

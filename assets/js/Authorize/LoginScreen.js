@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import Login from './Login';
 import Register from './Register';
-import Dashboard from './DashboardScreen';
-import DashboardScreen from "./DashboardScreen";
+import Auth from './Auth';
+import QuestionDashboard from '../Components/QuestionDashboard';
 
 class LoginScreen extends Component {
     constructor(props){
@@ -21,7 +22,7 @@ class LoginScreen extends Component {
     }
     componentWillMount() {
         let loginScreen = [];
-        loginScreen.push(<Login parentContext={this} appContext={this.props.parentContext}/>);
+        loginScreen.push(<Login key="login" parentContext={this} appContext={this.props.parentContext}/>);
         const loginMessage = "Not registered yet, Register Now";
         this.setState({
             userScreen  : loginScreen,
@@ -34,7 +35,7 @@ class LoginScreen extends Component {
         let userMessage;
         if(this.state.showLogin) {
             let userScreen = [];
-            userScreen.push(<Register parentContext={this}/>);
+            userScreen.push(<Register key="register" parentContext={this}/>);
             userMessage = "Already registered.Go to Login";
 
             this.setState({
@@ -43,19 +44,9 @@ class LoginScreen extends Component {
                 buttonLabel : "Login",
                 showLogin   : false
             })
-        } else if(!this.state.showLogin && this.state.isLoggedIn) {
-            let userScreen = [];
-            userScreen.push(<DashboardScreen parentContext={this}/>);
-            this.setState({
-                userScreen  : userScreen,
-                userMessage : '',
-                buttonLabel : "Dashboard",
-                showLogin   : false,
-                isLoggedIn  : true
-            })
         } else {
             let userScreen = [];
-            userScreen.push(<Login parentContext={this}/>);
+            userScreen.push(<Login key="login" parentContext={this}/>);
             userMessage = "Not Registered yet.Go to registration";
             this.setState({
                 userScreen  : userScreen,
@@ -67,27 +58,33 @@ class LoginScreen extends Component {
     }
 
     render() {
-        return (
-            <div className="wrapper">
-                <div className="authorize-block">
-                    {this.state.userScreen}
-                    {!this.state.isLoggedIn ? (
-                        <div>
-                            {this.state.userMessage}
-                            <MuiThemeProvider>
-                                <div className="button-div">
-                                    <RaisedButton className="button" key={this.state.userScreen} label={this.state.buttonLabel} primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
-                                </div>
-                            </MuiThemeProvider>
-                        </div>
-                    ) : (
-                        <div>
-                            {this.state.userMessage}
-                        </div>
-                    )}
+        if (Auth.getAuth() && Auth.getUserRole() === 'ADMIN') {
+            return (
+                <QuestionDashboard />
+            )
+        } else {
+            return (
+                <div className="wrapper">
+                    <div className="authorize-block">
+                        {this.state.userScreen}
+                        {!this.state.isLoggedIn ? (
+                            <div key="action" className={"text-center"}>
+                                <h6 key="userMessage">{this.state.userMessage}</h6>
+                                <MuiThemeProvider>
+                                    <div className="button-div">
+                                        <RaisedButton className="button" key={this.state.userScreen} label={this.state.buttonLabel} primary={true} style={style} onClick={(event) => this.handleClick(event)} />
+                                    </div>
+                                </MuiThemeProvider>
+                            </div>
+                        ) : (
+                            <div key="action">
+                                <h6>{this.state.userMessage}</h6>
+                            </div>
+                        )}
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 }
 const style = {

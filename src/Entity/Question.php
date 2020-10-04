@@ -11,6 +11,10 @@ use DateTime;
  */
 class Question extends AbstractQuizBankEntity
 {
+    const QUESTION_DIFFICULTY_EASY   = 'EASY';
+    const QUESTION_DIFFICULTY_MEDIUM = 'MEDIUM';
+    const QUESTION_DIFFICULTY_HARD   = 'HARD';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -29,6 +33,11 @@ class Question extends AbstractQuizBankEntity
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private QuestionType $questionType;
+
+    /**
+     * @ORM\Column(type="string", columnDefinition="ENUM('EASY', 'MEDIUM', 'HARD')")
+     */
+    private string $difficulty;
 
     /**
      * @ORM\Column(type="string")
@@ -91,6 +100,26 @@ class Question extends AbstractQuizBankEntity
     public function setQuestionType(QuestionType $questionType)
     {
         $this->questionType = $questionType;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDifficulty(): string
+    {
+        return $this->difficulty;
+    }
+
+    /**
+     * @param string $difficulty
+     *
+     * @return $this
+     */
+    public function setDifficulty(string $difficulty)
+    {
+        $this->difficulty = $difficulty;
 
         return $this;
     }

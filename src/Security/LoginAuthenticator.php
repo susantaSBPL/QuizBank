@@ -11,13 +11,18 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class LoginAuthenticator extends AbstractGuardAuthenticator
 {
+
     private UserPasswordEncoderInterface $passwordEncoder;
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    private UrlGeneratorInterface        $urlGenerator;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder, UrlGeneratorInterface $urlGenerator)
     {
         $this->passwordEncoder = $passwordEncoder;
+        $this->urlGenerator    = $urlGenerator;
     }
 
     public function supports(Request $request)
@@ -56,13 +61,11 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
      * @param TokenInterface $token
      * @param string         $providerKey
      *
-     * @return JsonResponse
+     * @return RedirectResponse
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
     {
-        return new JsonResponse([
-            'result' => true
-        ]);
+        return new RedirectResponse($this->urlGenerator->generate('_get_profile'));
     }
 
     public function start(Request $request, AuthenticationException $authException = null)

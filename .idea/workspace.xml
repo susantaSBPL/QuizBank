@@ -133,6 +133,12 @@
       <path value="$PROJECT_DIR$/vendor/psr/link" />
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/apache-pack" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
+      <path value="$PROJECT_DIR$/vendor/lorenzo/pinky" />
+      <path value="$PROJECT_DIR$/vendor/twig/inky-extra" />
+      <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
+      <path value="$PROJECT_DIR$/vendor/twig/cssinliner-extra" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hBXUSH7G43lvi0BxFnIUFVLg31" />
@@ -143,7 +149,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Services" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/js/Authorize" />
     <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -154,10 +160,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/js/Authorize" />
+      <recent name="$PROJECT_DIR$/src/Client" />
       <recent name="$PROJECT_DIR$/src/Services" />
       <recent name="$PROJECT_DIR$/src/Controller" />
       <recent name="$PROJECT_DIR$/assets/js/Components" />
-      <recent name="$PROJECT_DIR$/assets/js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets/js/Api" />
@@ -180,7 +187,20 @@
       <workItem from="1599833374181" duration="66847000" />
       <workItem from="1599991365071" duration="22748000" />
       <workItem from="1600166837628" duration="13899000" />
-      <workItem from="1600269676407" duration="6720000" />
+      <workItem from="1600269676407" duration="8003000" />
+      <workItem from="1600351492755" duration="6038000" />
+      <workItem from="1600438541398" duration="32855000" />
+      <workItem from="1600527874692" duration="46613000" />
+      <workItem from="1600696578172" duration="13708000" />
+      <workItem from="1600784880092" duration="9471000" />
+      <workItem from="1600872647535" duration="1039000" />
+      <workItem from="1600880053070" duration="1555000" />
+      <workItem from="1600959651157" duration="6509000" />
+      <workItem from="1601009697323" duration="141000" />
+      <workItem from="1601131685991" duration="6380000" />
+      <workItem from="1601305587453" duration="4840000" />
+      <workItem from="1601390162019" duration="8391000" />
+      <workItem from="1601561984926" duration="73039000" />
     </task>
     <servers />
   </component>
@@ -188,33 +208,41 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="67" y="27" width="1289" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1599972893828">
+    <state x="67" y="27" width="1289" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600441353553">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="67" y="27" width="1289" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1299.741@67.27.1299.741" timestamp="1599972893828" />
+    <state x="67" y="27" width="1289" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1299.741@67.27.1299.741" timestamp="1600441353553" />
     <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599880228765">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1299.741@67.27.1299.741" timestamp="1599880228765" />
-    <state x="449" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600008856182">
+    <state x="449" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601392643962">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="449" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/67.27.1299.741@67.27.1299.741" timestamp="1600008856182" />
+    <state x="449" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/67.27.1299.741@67.27.1299.741" timestamp="1601392643962" />
     <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1599926652104">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1599926652104" />
+    <state x="507" y="116" width="409" height="561" key="NewPhpClassDialog" timestamp="1600492957885">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="507" y="116" width="409" height="561" key="NewPhpClassDialog/67.27.1299.741@67.27.1299.741" timestamp="1600492957885" />
     <state x="205" y="31" key="SettingsEditor" timestamp="1599491090547">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="205" y="31" key="SettingsEditor/67.27.1299.741@67.27.1299.741" timestamp="1599491090546" />
-    <state x="407" y="135" width="618" height="522" key="find.popup" timestamp="1599710873171">
+    <state x="407" y="135" width="618" height="522" key="find.popup" timestamp="1601661631031">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="407" y="135" width="618" height="522" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1599710873171" />
-    <state x="380" y="175" key="run.anything.popup" timestamp="1599921730992">
+    <state x="407" y="135" width="618" height="522" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1601661631031" />
+    <state x="380" y="175" key="run.anything.popup" timestamp="1601808491350">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1599921730992" />
+    <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1601808491350" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1600965431937">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1600965431937" />
   </component>
 </project>

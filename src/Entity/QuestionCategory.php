@@ -28,6 +28,14 @@ class QuestionCategory extends AbstractQuizBankEntity
     private bool $isActive = true;
 
     /**
+     * @param string $category
+     */
+    public function __construct(string $category)
+    {
+        $this->category = htmlspecialchars($category, ENT_QUOTES);
+    }
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -41,18 +49,6 @@ class QuestionCategory extends AbstractQuizBankEntity
     public function getCategory(): string
     {
         return $this->category;
-    }
-
-    /**
-     * @param string $category
-     *
-     * @return $this
-     */
-    public function setCategory(string $category)
-    {
-        $this->category = $category;
-
-        return $this;
     }
 
     /**

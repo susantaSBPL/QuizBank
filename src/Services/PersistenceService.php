@@ -110,9 +110,9 @@ class PersistenceService extends BaseService
 
         $this->em->flush();
 
-        foreach ($objects as $obj) :
-            $this->auditObject($obj, $action);
-        endforeach;
+//        foreach ($objects as $obj) :
+//            $this->auditObject($obj, $action);
+//        endforeach;
     }
 
     /**

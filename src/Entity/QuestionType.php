@@ -28,6 +28,14 @@ class QuestionType extends AbstractQuizBankEntity
     private bool $isActive = true;
 
     /**
+     * @param string $type
+     */
+    public function __construct(string $type)
+    {
+        $this->type = htmlspecialchars($type, ENT_QUOTES);
+    }
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -41,18 +49,6 @@ class QuestionType extends AbstractQuizBankEntity
     public function getType(): string
     {
         return $this->type;
-    }
-
-    /**
-     * @param string $type
-     *
-     * @return $this
-     */
-    public function setType(string $type)
-    {
-        $this->type = $type;
-
-        return $this;
     }
 
     /**

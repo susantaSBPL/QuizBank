@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=QuestionChoiceRepository::class)
  */
-class QuestionChoice
+class QuestionChoice extends AbstractQuizBankEntity
 {
     /**
      * @ORM\Id
@@ -56,10 +56,14 @@ class QuestionChoice
 
     /**
      * @param Question $question
+     *
+     * @return $this
      */
     public function setQuestion(Question $question)
     {
         $this->question = $question;
+
+        return $this;
     }
 
     /**
@@ -72,10 +76,14 @@ class QuestionChoice
 
     /**
      * @param string $choiceText
+     *
+     * @return $this
      */
     public function setChoiceText(string $choiceText)
     {
         $this->choiceText = $choiceText;
+
+        return $this;
     }
 
     /**
@@ -88,10 +96,14 @@ class QuestionChoice
 
     /**
      * @param bool $isRightChoice
+     *
+     * @return $this
      */
     public function setIsRightChoice(bool $isRightChoice)
     {
         $this->isRightChoice = $isRightChoice;
+
+        return $this;
     }
 
     /**
@@ -104,9 +116,27 @@ class QuestionChoice
 
     /**
      * @param bool $isActive
+     *
+     * @return $this
      */
     public function setIsActive(bool $isActive)
     {
         $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Represent the Entity as a string.
+     *
+     * @return string
+     */
+    public function toAuditString()
+    {
+        // Represent the Entity as a string $s
+        $s = "QuestionChoice {";
+        $s = $s."}";
+
+        return $s;
     }
 }

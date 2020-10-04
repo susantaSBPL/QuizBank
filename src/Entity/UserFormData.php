@@ -33,6 +33,13 @@ class UserFormData
     private string $email;
 
     /**
+     * @Assert\NotBlank()
+     *
+     * @var array $roles
+     */
+    private array $roles;
+
+    /**
      * @Assert\Blank()
      *
      * @var string|null $username
@@ -45,6 +52,11 @@ class UserFormData
      * @var string $password
      */
     private string $password;
+
+    /**
+     * @var bool $isActive
+     */
+    private bool $isActive;
 
     /**
      * @return string
@@ -95,6 +107,22 @@ class UserFormData
     }
 
     /**
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        return $this->roles;
+    }
+
+    /**
+     * @param array $roles
+     */
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+    }
+
+    /**
      * @return null|string
      */
     public function getUsername(): ?string
@@ -124,5 +152,21 @@ class UserFormData
     public function setPassword(string $password)
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsActive(): bool
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param bool $isActive
+     */
+    public function setIsActive(bool $isActive = false)
+    {
+        $this->isActive = $isActive;
     }
 }

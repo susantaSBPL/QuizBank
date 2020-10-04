@@ -1,7 +1,7 @@
 security:
     encoders:
         App\Entity\User:
-            algorithm: auto
+            algorithm: bcrypt
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
@@ -23,6 +23,7 @@ security:
                     - App\Security\LoginAuthenticator
             logout:
                 path: api_logout
+                invalidate_session: true
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -33,5 +34,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-#         - { path: ^/api/admin, roles: ROLE_ADMIN }
-#         - { path: ^/api/admin/profile, roles: [ROLE_ADMIN, ROLE_USER] }
+#         - { path: ^/api/admin,  roles: ROLE_ADMIN }
+#         - { path: ^/api/master, roles: ROLE_MASTER }

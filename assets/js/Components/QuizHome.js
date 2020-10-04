@@ -16,6 +16,12 @@ const typeOptions = [
     { value: 'boolean', label: 'True False' }
 ];
 
+const difficultyOptions = [
+    { value: 'easy', label: 'EASY' },
+    { value: 'medium', label: 'MEDIUM' },
+    { value: 'hard', label: 'HARD' }
+];
+
 const questionNumber = [
     { value: '10', label: '10' },
     { value: '25', label: '25' },
@@ -28,6 +34,7 @@ const ANSWER_TIME = 10000;
 const QuizHome = () => {
     const [category, setCategory]       = useState('');
     const [type, setType]               = useState('');
+    const [difficulty, setDifficulty]   = useState('');
     const [number, setNumber]           = useState(0);
     const [totalNumber, setTotalNumber] = useState(10);
     const [loading, setLoading]         = useState(false);
@@ -43,6 +50,7 @@ const QuizHome = () => {
         const newQuestions = await fetchQuizQuestions(
             category,
             type,
+            difficulty,
             totalNumber
         );
         setQuestions(newQuestions);
@@ -90,29 +98,36 @@ const QuizHome = () => {
         setType(option.value);
     }
 
+    const handleQuestionDifficultyChange = (option) => {
+        setDifficulty(option.value);
+    }
+
     const handleQuestionNumberChange = (option) => {
         setTotalNumber(option.value);
     }
 
     return (
         <section>
-
             <div className="wrapper mt-2">
                 {gameOver || userAnswers.length === totalNumber ? (
                     <div className="row col-12">
-                        <div className="col-3">
+                        <div className="col">
                             <label htmlFor="quiz-category"><b>Question Category</b></label>
                             <Select className='quiz-category' onChange={handleQuestionCategoryChange} options={categoryOptions}/>
                         </div>
-                        <div className="col-3">
+                        <div className="col">
                             <label htmlFor="quiz-type"><b>Type</b></label>
                             <Select className='quiz-type' onChange={handleQuestionTypeChange} options={typeOptions}/>
                         </div>
-                        <div className="col-3">
+                        <div className="col">
+                            <label htmlFor="quiz-difficulty"><b>Difficulty</b></label>
+                            <Select className='quiz-difficulty' onChange={handleQuestionDifficultyChange} options={difficultyOptions}/>
+                        </div>
+                        <div className="col">
                             <label htmlFor="question-count"><b>No of Questions</b></label>
                             <Select className='question-count' onChange={handleQuestionNumberChange} options={questionNumber}/>
                         </div>
-                        <div className="col-3">
+                        <div className="col">
                             <button className='start col' onClick={startTrivia}>
                                 Start
                             </button>

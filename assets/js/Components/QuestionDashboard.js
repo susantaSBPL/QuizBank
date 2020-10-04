@@ -8,8 +8,6 @@ class QuizDashboard extends Component {
         super(props);
         this.state = {
             page: [],
-            title: '',
-            message: ''
         }
 
         this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -19,23 +17,20 @@ class QuizDashboard extends Component {
         switch (e.target.id) {
             case 'question-type':
                 this.setState({
-                    page: [<QuestionType parentContext={this} appContext={this.props.parentContext} />]
+                    page: [<QuestionType key={'type'} parentContext={this} appContext={this.props.parentContext} />]
                 });
                 break;
             case 'question-category':
                 this.setState({
-                    page: [<QuestionCategory parentContext={this} appContext={this.props.parentContext} />]
+                    page: [<QuestionCategory key={'category'} parentContext={this} appContext={this.props.parentContext} />]
                 });
                 break;
             case 'question':
                 this.setState({
-                    page: [<Question parentContext={this} appContext={this.props.parentContext} />]
+                    page: [<Question key={'question'} parentContext={this} appContext={this.props.parentContext} />]
                 });
                 break;
         }
-        this.setState({
-            title: e.target.id
-        });
     }
 
     render() {
@@ -44,18 +39,18 @@ class QuizDashboard extends Component {
                 <div className="wrapper mt-2">
                     <div className="row col-12">
                         <div className="col">
+                            <button id="question" className='start col' onClick={this.handleButtonClick}>
+                                Question
+                            </button>
+                        </div>
+                        <div className="col">
                             <button id="question-type" className='start col' onClick={this.handleButtonClick}>
-                                Add Question Type
+                                Question Type
                             </button>
                         </div>
                         <div className="col">
                             <button id="question-category" className='start col' onClick={this.handleButtonClick}>
-                                Add Question Category
-                            </button>
-                        </div>
-                        <div className="col">
-                            <button id="question" className='start col' onClick={this.handleButtonClick}>
-                                Add Question
+                                Question Category
                             </button>
                         </div>
                     </div>

@@ -13,6 +13,10 @@ use DateTime;
  */
 class User extends AbstractQuizBankEntity implements UserInterface
 {
+    const USER_ROLE_ADMIN  = 'ROLE_ADMIN';
+    const USER_ROLE_MASTER = 'ROLE_MASTER';
+    const USER_ROLE_USER   = 'ROLE_USER';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -66,6 +70,13 @@ class User extends AbstractQuizBankEntity implements UserInterface
      * @var null|string
      */
     private ?string $picture = null;
+
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var bool
+     */
+    private bool $isActive = false;
 
     /**
      * @ORM\Column(type="datetime")
@@ -191,6 +202,26 @@ class User extends AbstractQuizBankEntity implements UserInterface
     }
 
     /**
+     * @return bool
+     */
+    public function getIsActive(): bool
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param bool $isActive
+     *
+     * @return $this
+     */
+    public function setIsActive(bool $isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
      * @return DateTime
      */
     public function getCreatedAt(): DateTime
@@ -216,8 +247,6 @@ class User extends AbstractQuizBankEntity implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
@@ -227,6 +256,21 @@ class User extends AbstractQuizBankEntity implements UserInterface
         $this->roles = $roles;
 
         return $this;
+    }
+
+    public function isAdmin()
+    {
+        return in_array('ROLE_ADMIN', $this->getRoles());
+    }
+
+    public function isMaster()
+    {
+        return in_array('ROLE_MASTER', $this->getRoles());
+    }
+
+    public function isUser()
+    {
+        return in_array('ROLE_USER', $this->getRoles());
     }
 
     /**
