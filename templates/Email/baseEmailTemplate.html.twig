@@ -1,0 +1,34 @@
+{% apply inky_to_html|inline_css(source('@css/email.css')) %}
+    <container>
+        <row class="preheader">
+            <columns>
+                {{ emailHeader is defined ? emailHeader : '' }}
+            </columns>
+        </row>
+        <row class="header" align="center">
+            <columns class="header-column">
+                <a href="{{ emailBaseUrl }}" class="email-masthead_name">
+{#                    <img src="{{ emailLogo }}" alt="MyPhys.io" width="{{ emailLogoWidth }}" height="{{ emailLogoHeight }}">#}
+                </a>
+            </columns>
+        </row>
+        <row class="welcome email-body_inner">
+            <columns>
+                <spacer size="35"></spacer>
+                <h1 class="welcome-h1" align="left">
+                    Hi {{email.toName}},
+                </h1>
+                <spacer size="10"></spacer>
+            </columns>
+        </row>
+        {% block content %}{% endblock %}
+        <row class="email-footer email-body_inner" align="center">
+            <columns class="content-cell" align="center">
+                <p class="sub align-center" align="center">© 2020 MyPhys.io. All rights reserved.</p>
+                <p class="sub align-center" align="center">
+                    MyPhys.io.
+                </p>
+            </columns>
+        </row>
+    </container>
+{% endapply %}

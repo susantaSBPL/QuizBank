@@ -1,0 +1,44 @@
+{% extends "Email/baseEmailTemplate.html.twig" %}
+{% block content %}
+    <row class="email-body_inner">
+        <columns>
+            <p class="email-body">
+                {{ emailBody|raw }}
+                {%  if emailLinkStatus is defined %}
+                    <strong class="email-link-status">{{ emailLinkStatus }}</strong>
+                {% endif %}
+            </p>
+        </columns>
+    </row>
+    <row class="email-body_inner">
+        <columns align="center">
+            <a href="{{ emailActionUrl }}" class="button button--green" target="_blank">
+                {{ emailButtonText }}
+            </a>
+        </columns>
+        {% if emailAuthorizeActionUrl is defined %}
+            <columns class="email-advance-button">
+                <a href="{{ emailAuthorizeActionUrl }}" class="button button--green" target="_blank">
+                    {{ emailAdvanceButtonText }}
+                </a>
+            </columns>
+        {% endif %}
+    </row>
+    {% if emailIgnoreLink is defined %}
+        <row class="email-body_inner">
+            <columns>
+                <p class="email-ignore-link">{{ emailIgnoreLink }}please ignore this email or <a href="{{ emailSupportUrl}}">contact support</a> if you have questions.</p>
+                <p class="email-ignore-link">Thanks,
+                    <br />The MyPhys.io Team
+                </p>
+            </columns>
+        </row>
+    {% endif %}
+    <hr />
+    <row class="email-body_inner">
+        <columns>
+            <p class="sub email-body-action">If you’re having trouble with the button above, copy and paste the URL below into your web browser.</p>
+            <p class="sub email-body-action">{{ emailActionUrl }}</p>
+        </columns>
+    </row>
+{% endblock %}
