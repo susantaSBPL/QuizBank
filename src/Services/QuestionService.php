@@ -128,41 +128,55 @@ class QuestionService extends BaseService
     }
 
     /**
-     * @param array  $questionDetail
+     * @param array  $questionDetails
      * @param string $action
      *
      * @throws Exception
      */
-    public function addQuestion(array $questionDetail, string $action)
+    public function addQuestion(array $questionDetails, string $action)
     {
-        $questionText  = $questionDetail['question'];
-        $correctAnswer = $questionDetail['correctAnswer'];
-        $queType       = $questionDetail['questionType'];
-        $queCategory   = $questionDetail['questionCategory'];
+        $questionData = [];
+        foreach($questionDetails as $questionDetail) {
+            $questionText  = $questionDetail['question'];
+            $correctAnswer = $questionDetail['correctAnswer'];
+            $queType       = $questionDetail['questionType'];
+            $queCategory   = $questionDetail['questionCategory'];
+            $difficulty    = $questionDetail['questionDifficulty'];
 
-        $questionType     = $this->questionTypeRepository->find($queType);
-        $questionCategory = $this->questionCategoryRepository->find($queCategory);
+            $questionType = $this->questionTypeRepository->find($queType);
+            if (!$questionType) {
+                $questionType = $this->questionTypeRepository->findOneBy(['type' => $queType]);
+            }
+            $questionCategory = $this->questionCategoryRepository->find($queCategory);
+            if (!$questionCategory) {
+                $questionCategory = $this->questionCategoryRepository->findOneBy(['category' => $queCategory]);
+            }
 
-        $question = new Question();
-        $question->setQuestionType($questionType)
-                 ->setQuestionCategory($questionCategory)
-                 ->setQuestionText($questionText)
-                 ->setCreatedAt($this->dateService->getServerDateTime())
-                 ->setIsActive(true);
+            if (!$questionType || !$questionCategory) {
+                continue;
+            }
 
-        $this->persistenceService->persistEntity($question, $action);
+            $question = new Question();
+            $question->setQuestionType($questionType)
+                ->setQuestionCategory($questionCategory)
+                ->setDifficulty($difficulty)
+                ->setQuestionText($questionText)
+                ->setCreatedAt($this->dateService->getServerDateTime())
+                ->setIsActive(true);
 
-        $questionChoices = [];
-        for ($i = 1; $i <= 4; $i++) {
-            $questionChoice = new QuestionChoice();
-            $questionChoice->setQuestion($question)
-                           ->setChoiceText($questionDetail['answer'.$i])
-                           ->setIsRightChoice($correctAnswer == $i)
-                           ->setIsActive(true);
+            array_push($questionData, $question);
 
-            $questionChoices[] = $questionChoice;
+            for ($i = 1; $i <= 4; $i++) {
+                $questionChoice = new QuestionChoice();
+                $questionChoice->setQuestion($question)
+                    ->setChoiceText($questionDetail['answer'.$i])
+                    ->setIsRightChoice($correctAnswer == $i)
+                    ->setIsActive(true);
+
+                array_push($questionData, $questionChoice);
+            }
         }
 
-        $this->persistenceService->persistEntities($questionChoices, $action);
+        $this->persistenceService->persistEntities($questionData, $action);
     }
 }

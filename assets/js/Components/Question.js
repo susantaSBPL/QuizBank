@@ -97,9 +97,9 @@ class Question extends Component {
                     })
                     .catch(function (error) {
                         Swal.fire(
-                            'Success',
+                            'Error',
                             error,
-                            'success'
+                            'error'
                         )
                     });
             }
