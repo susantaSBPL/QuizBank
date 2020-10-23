@@ -1,6 +1,6 @@
 import React from 'react';
 import { Wrapper, ButtonWrapper } from './QuestionCard.styles';
-// import Timer from 'react-compound-timer';
+import Timer from './Timer';
 
 const QuestionCard = ({
                        question,
@@ -10,27 +10,9 @@ const QuestionCard = ({
                        questionNr,
                        totalQuestions,
                        time,
-                       questionCallback
                    }) => (
         <Wrapper>
-            {/*<Timer*/}
-            {/*    initialTime={time}*/}
-            {/*    direction="backward"*/}
-            {/*    checkpoints={[*/}
-            {/*        {*/}
-            {/*            time: 0,*/}
-            {/*            callback: () => questionCallback()*/}
-            {/*        }*/}
-            {/*    ]}*/}
-            {/*>*/}
-            {/*    {() => (*/}
-            {/*        <React.Fragment>*/}
-            {/*            <div className="timer">*/}
-            {/*                <Timer.Minutes /> : <Timer.Seconds />*/}
-            {/*            </div>*/}
-            {/*        </React.Fragment>*/}
-            {/*    )}*/}
-            {/*</Timer>*/}
+            <Timer time={time} />
             <p className='number'>
                 Question: {questionNr} / {totalQuestions}
             </p>

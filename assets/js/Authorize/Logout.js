@@ -7,7 +7,7 @@ const apiBaseUrl = "http://quizbank.com/api/";
 
 const Logout = () => {
     axios.post(apiBaseUrl+'userLogout')
-        .then((response) => { console.log(response);
+        .then((response) => {
             if (response.status === 200) {
                 Auth.signout();
                 window.location = '/';

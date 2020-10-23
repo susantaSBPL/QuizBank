@@ -179,16 +179,17 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/js/Filter" />
+      <recent name="$PROJECT_DIR$/assets/js/Api" />
+      <recent name="$PROJECT_DIR$/assets/js/components" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets/js/Authorize" />
       <recent name="$PROJECT_DIR$/src/Client" />
       <recent name="$PROJECT_DIR$/src/Services" />
       <recent name="$PROJECT_DIR$/src/Controller" />
       <recent name="$PROJECT_DIR$/assets/js/Components" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assets/js/Api" />
-      <recent name="$PROJECT_DIR$/assets/js/components" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -224,7 +225,10 @@
       <workItem from="1601815246612" duration="6717000" />
       <workItem from="1601906947224" duration="355000" />
       <workItem from="1601908058905" duration="13080000" />
-      <workItem from="1601994000995" duration="14298000" />
+      <workItem from="1601994000995" duration="14901000" />
+      <workItem from="1602079209896" duration="15540000" />
+      <workItem from="1602170696805" duration="5898000" />
+      <workItem from="1602678723755" duration="42626000" />
     </task>
     <servers />
   </component>
@@ -260,14 +264,14 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="205" y="31" key="SettingsEditor/67.27.1299.741@67.27.1299.741" timestamp="1599491090546" />
-    <state x="407" y="135" width="618" height="522" key="find.popup" timestamp="1601661631031">
+    <state x="407" y="135" width="618" height="522" key="find.popup" timestamp="1602083575421">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="407" y="135" width="618" height="522" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1601661631031" />
-    <state x="380" y="175" key="run.anything.popup" timestamp="1602045357053">
+    <state x="407" y="135" width="618" height="522" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1602083575421" />
+    <state x="380" y="175" key="run.anything.popup" timestamp="1602175428108">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1602045357053" />
+    <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1602175428108" />
     <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1600965431937">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
